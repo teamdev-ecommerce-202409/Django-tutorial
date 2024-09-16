@@ -1,5 +1,11 @@
 # Django-tutorial: 衣服管理機能の実装
 
+```
+mkdir -p mysql/data
+docker build -t django_mysql_image .
+docker run --name django_mysql_container -p 8081:8080 django_mysql_image
+```
+
 ## 1. 登録された衣服の一覧を取得
 
 ### リクエスト
