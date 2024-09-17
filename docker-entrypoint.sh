@@ -1,4 +1,9 @@
 #!/bin/bash
+if [ ! -d "/var/lib/mysql/mysql" ]; then
+    echo "Initializing MySQL data directory..."
+    mysqld --initialize-insecure --user=mysql --datadir=/var/lib/mysql
+fi
+
 mysqld &
 
 until mysqladmin ping --silent; do

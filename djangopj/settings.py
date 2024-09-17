@@ -10,11 +10,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
+
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# .envファイルを読み込む
+env = environ.Env()
+env.read_env(os.path.join(BASE_DIR, ".env"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -79,12 +85,12 @@ WSGI_APPLICATION = "djangopj.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "django_db",
-        "USER": "django",
-        "PASSWORD": "django",
-        "HOST": "localhost",
-        "PORT": "3306",
+        "ENGINE": env("MYSQL_ENGINE"),
+        "NAME": env("MYSQL_DB_NAME"),
+        "USER": env("MYSQL_APP_USER"),
+        "PASSWORD": env("MYSQL_APP_USER_PASSWORD"),
+        "HOST": env("MYSQL_HOST"),
+        "PORT": env("MYSQL_PORT"),
     }
 }
 
