@@ -23,6 +23,16 @@ docker container run \
   django_mysql_image
 ```
 
+# docker hubからイメージを取得して実行
+```
+docker pull genji1/django-tutorial
+docker container run \
+  --name django_mysql_container \
+  -p 8081:8080 \
+  -v /path/to/your/local/directory:/var/lib/mysql \
+  genji1/django-tutorial
+```
+
 # APIの使用方法
 
 ## 1. 登録された衣服の一覧を取得
